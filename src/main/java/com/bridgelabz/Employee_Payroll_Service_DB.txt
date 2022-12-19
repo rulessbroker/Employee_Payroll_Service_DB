@@ -62,3 +62,13 @@ mysql> SELECT * FROM employee_payroll;
 +----+---------+--------+------------+
 4 rows in set (0.03 sec)
 
+#UC5 -> Retrive salary data
+
+mysql> select * from employee_payroll where name='Bill';
++----+------+--------+------------+
+| id | name | salary | start_date |
++----+------+--------+------------+
+|  1 | Bill | 100000 | 2018-01-03 |
++----+------+--------+------------+
+1 row in set (0.04 sec)
+
