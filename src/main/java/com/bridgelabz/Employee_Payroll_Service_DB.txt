@@ -47,3 +47,18 @@ mysql> insert into employee_payroll(name, salary, start_date) values
     -> ('Charlie', 300000.00, '2020-5-21');
 Query OK, 4 rows affected (0.16 sec)
 Records: 4  Duplicates: 0  Warnings: 0
+
+
+#UC4 -> Retriving all data
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------+------------+
+| id | name    | salary | start_date |
++----+---------+--------+------------+
+|  1 | Bill    | 100000 | 2018-01-03 |
+|  2 | Mark    | 200000 | 2019-11-13 |
+|  3 | Rita    | 400000 | 2017-01-21 |
+|  4 | Charlie | 300000 | 2020-05-21 |
++----+---------+--------+------------+
+4 rows in set (0.03 sec)
+
