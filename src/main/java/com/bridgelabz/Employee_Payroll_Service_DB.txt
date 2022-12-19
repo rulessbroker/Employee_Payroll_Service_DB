@@ -1,0 +1,14 @@
+#UC1 -> create payroll_service database.
+
+mysql> create database payroll_ser
+Query OK, 1 row affected (0.14 sec
+
+mysql> use payroll_services;
+Database changed
+mysql> show databases;
++---------------------+
+| Database            |
++---------------------+
+| payroll_services    |
++---------------------+
+11 rows in set (0.00 sec)
