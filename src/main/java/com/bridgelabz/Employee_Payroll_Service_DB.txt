@@ -37,3 +37,13 @@ mysql> show tables;
 | employee_payroll           |
 +----------------------------+
 1 row in set (0.03 sec)
+
+#UC3 -> use CRUD operation
+
+mysql> insert into employee_payroll(name, salary, start_date) values
+    -> ('Bill', 100000.00, '2018-01-03'),
+    -> ('Mark', 200000.00, '2019-11-13'),
+    -> ('Rita', 400000.00, '2017-01-21'),
+    -> ('Charlie', 300000.00, '2020-5-21');
+Query OK, 4 rows affected (0.16 sec)
+Records: 4  Duplicates: 0  Warnings: 0
