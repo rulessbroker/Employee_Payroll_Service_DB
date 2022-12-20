@@ -192,4 +192,82 @@ mysql> select count(salary) from employee_payroll where gender = 'F' group by ge
 +---------------+
 1 row in set (0.00 sec)
 
+UC8 -> Extend employee payroll data to store employee information like phone,address and department
+
+mysql>  alter table Employee_Payroll add phone_number varchar(250) after name;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------------+--------+--------+------------+
+| id | name    | phone_number | gender | salary | start_date |
++----+---------+--------------+--------+--------+------------+
+|  1 | Bill    | NULL         | M      | 100000 | 2018-01-03 |
+|  2 | Mark    | NULL         | M      | 200000 | 2019-11-13 |
+|  3 | Rita    | NULL         | F      | 400000 | 2017-01-21 |
+|  4 | Charlie | NULL         | M      | 300000 | 2020-05-21 |
++----+---------+--------------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table Employee_Payroll add address varchar(250) after phone_number;
+
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------------+---------+--------+--------+------------+
+| id | name    | phone_number | address | gender | salary | start_date |
++----+---------+--------------+---------+--------+--------+------------+
+|  1 | Bill    | NULL         | NULL    | M      | 100000 | 2018-01-03 |
+|  2 | Mark    | NULL         | NULL    | M      | 200000 | 2019-11-13 |
+|  3 | Rita    | NULL         | NULL    | F      | 400000 | 2017-01-21 |
+|  4 | Charlie | NULL         | NULL    | M      | 300000 | 2020-05-21 |
++----+---------+--------------+---------+--------+--------+------------+
+4 rows in set (0.01 sec)
+
+mysql>  alter table Employee_Payroll add department varchar(150) not null after
+address;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------------+---------+------------+--------+--------+------------+
+| id | name    | phone_number | address | department | gender | salary | start_date |
++----+---------+--------------+---------+------------+--------+--------+------------+
+|  1 | Bill    | NULL         | NULL    |            | M      | 100000 | 2018-01-03 |
+|  2 | Mark    | NULL         | NULL    |            | M      | 200000 | 2019-11-13 |
+|  3 | Rita    | NULL         | NULL    |            | F      | 400000 | 2017-01-21 |
+|  4 | Charlie | NULL         | NULL    |            | M      | 300000 | 2020-05-21 |
++----+---------+--------------+---------+------------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table Employee_Payroll alter address set default 'TBD';
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------------+---------+------------+--------+--------+------------+
+| id | name    | phone_number | address | department | gender | salary | start_date |
++----+---------+--------------+---------+------------+--------+--------+------------+
+|  1 | Bill    | NULL         | NULL    |            | M      | 100000 | 2018-01-03 |
+|  2 | Mark    | NULL         | NULL    |            | M      | 200000 | 2019-11-13 |
+|  3 | Rita    | NULL         | NULL    |            | F      | 400000 | 2017-01-21 |
+|  4 | Charlie | NULL         | NULL    |            | M      | 300000 | 2020-05-21 |
++----+---------+--------------+---------+------------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> desc employee_payroll;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int          | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(40)  | YES  |     | NULL    |                |
+| phone_number | varchar(250) | YES  |     | NULL    |                |
+| address      | varchar(250) | YES  |     | TBD     |                |
+| department   | varchar(150) | NO   |     | NULL    |                |
+| gender       | char(1)      | YES  |     | NULL    |                |
+| salary       | double       | YES  |     | NULL    |                |
+| start_date   | date         | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.04 sec)
 
