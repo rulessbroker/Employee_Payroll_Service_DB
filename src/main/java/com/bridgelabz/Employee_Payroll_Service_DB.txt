@@ -72,3 +72,65 @@ mysql> select * from employee_payroll where name='Bill';
 +----+------+--------+------------+
 1 row in set (0.04 sec)
 
+select salary from employee_payroll;
++--------+
+| salary |
++--------+
+| 100000 |
+| 200000 |
+| 400000 |
+| 300000 |
++--------+
+4 rows in set (0.01 sec)
+
+#UC6 -> Adding_Gender_To_The_Table
+
+mysql>  alter table employee_payroll add gender char(1) after name;
+Query OK, 0 rows affected (1.58 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee_payroll
+    -> ;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int         | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(40) | YES  |     | NULL    |                |
+| gender     | char(1)     | YES  |     | NULL    |                |
+| salary     | double      | YES  |     | NULL    |                |
+| start_date | date        | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.09 sec)
+
+mysql> update employee_payroll set gender = 'M'  where name = 'Bill' or  name =
+'Charlie';
+Query OK, 2 rows affected (0.07 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start_date |
++----+---------+--------+--------+------------+
+|  1 | Bill    | M      | 100000 | 2018-01-03 |
+|  2 | Mark    | NULL   | 200000 | 2019-11-13 |
+|  3 | Rita    | NULL   | 400000 | 2017-01-21 |
+|  4 | Charlie | M      | 300000 | 2020-05-21 |
++----+---------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set gender = 'F'  where name = 'Tersia';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++----+---------+--------+--------+------------+
+| id | name    | gender | salary | start_date |
++----+---------+--------+--------+------------+
+|  1 | Bill    | M      | 100000 | 2018-01-03 |
+|  2 | Mark    | NULL   | 200000 | 2019-11-13 |
+|  3 | Rita    | NULL   | 400000 | 2017-01-21 |
+|  4 | Charlie | M      | 300000 | 2020-05-21 |
++----+---------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+
