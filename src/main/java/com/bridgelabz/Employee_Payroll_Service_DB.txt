@@ -127,10 +127,69 @@ mysql> select * from employee_payroll;
 | id | name    | gender | salary | start_date |
 +----+---------+--------+--------+------------+
 |  1 | Bill    | M      | 100000 | 2018-01-03 |
-|  2 | Mark    | NULL   | 200000 | 2019-11-13 |
-|  3 | Rita    | NULL   | 400000 | 2017-01-21 |
+|  2 | Mark    | F      | 200000 | 2019-11-13 |
+|  3 | Rita    | F      | 400000 | 2017-01-21 |
 |  4 | Charlie | M      | 300000 | 2020-05-21 |
 +----+---------+--------+--------+------------+
 4 rows in set (0.00 sec)
+
+#UC7 -> Find_Sum_Avg_Of_Salary_And_Count_From_Table
+
+mysql> select sum(salary) from employee_payroll where gender = 'M' group by gender;
++-------------+
+| sum(salary) |
++-------------+
+|      600000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salary) from employee_payroll where gender = 'M' group by gender;
++-------------+
+| avg(salary) |
++-------------+
+|      200000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select gender, count(salary) from employee_payroll group by gender;
++--------+---------------+
+| gender | count(salary) |
++--------+---------------+
+| M      |             3 |
+| F      |             1 |
++--------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select min(salary) from employee_payroll where gender = 'M' group by gender;
++-------------+
+| min(salary) |
++-------------+
+|      100000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) from employee_payroll where gender = 'F' group by gender;
++-------------+
+| max(salary) |
++-------------+
+|      400000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(salary) from employee_payroll where gender = 'M' group by gender;
++---------------+
+| count(salary) |
++---------------+
+|             3 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select count(salary) from employee_payroll where gender = 'F' group by gender;
++---------------+
+| count(salary) |
++---------------+
+|             1 |
++---------------+
+1 row in set (0.00 sec)
 
 
